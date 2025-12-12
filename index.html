@@ -123,6 +123,7 @@
       font-size: 14px;
       color: #4a262a;
       margin-bottom: 18px;
+      word-break: break-word;
     }
 
     /* FORM FIELDS */
@@ -197,19 +198,11 @@
       line-height: 1.55;
     }
 
-    /* 도입문 스타일 통일 */
     .delegate-intro {
       font-size: 13px;
       line-height: 1.55;
       color: #543338;
       margin-bottom: 14px;
-    }
-
-    .section-card .note {
-      font-size: 12px;
-      margin-top: 10px;
-      color: #7b555a;
-      line-height: 1.5;
     }
 
     /* 서명 패드 */
@@ -263,6 +256,13 @@
       color: #7f1820;
     }
 
+    .error-message {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #c0392b;
+      display: none;
+    }
+
     /* 개인정보 동의 */
     .consent-section {
       margin-top: 28px;
@@ -310,6 +310,29 @@
       font-weight: 600;
       color: #fff;
       cursor: pointer;
+    }
+
+    .download-area {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #543338;
+      line-height: 1.55;
+    }
+
+    .download-link {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid #a62931;
+      color: #7f1820;
+      text-decoration: none;
+      background: #fff;
+      font-weight: 600;
+    }
+
+    .download-link:hover {
+      background: #f7e3e6;
     }
 
     @media (max-width:768px) {
@@ -377,7 +400,7 @@
 
           <!-- 수신 -->
           <h2 class="section-title">수신 (수임인)</h2>
-          <div class="info-block">힐스테이트 메디알레 입주예정자협의회 <mail@mail.com> </div>
+          <div class="info-block">힐스테이트 메디알레 입주예정자협의회 &lt;mail@mail.com&gt; </div>
 
           <!-- 계약자 정보 -->
           <h2 class="section-title">계약자 정보 (위임인)</h2>
@@ -405,6 +428,7 @@
               </div>
             </div>
           </div>
+
           <div class="info-row">
             <div class="field-group">
               <label>생년월일 (필수)*</label>
@@ -463,6 +487,7 @@
               <li>이 외 입주예정자들의 권익을 위한 각종 협의·동의·계약체결 등의 제반업무 및 의결</li>
               <li>이 외 상기 사항에 부대하여 수행되는 일체의 사항 및 업무(각종 외부자문 진행 등)</li>
             </ol>
+
             <h3>위임 효력 기간 및 철회</h3>
             <div class="delegate-intro">
               <strong>
@@ -502,7 +527,7 @@
               </div>
             </div>
 
-            <div id="signature-error" class="error-message" style="display:none;">서명을 남겨주세요.</div>
+            <div id="signature-error" class="error-message">서명을 남겨주세요.</div>
           </div>
 
           <!-- 개인정보 동의 -->
@@ -521,13 +546,14 @@
               - 위임장 제출일로부터 공동주택관리법 제 11조에 따른 입주자대표회의 구성 시까지 보관 후 파기<br /><br />
 
               <strong>4. 동의 거부 권리 및 불이익</strong><br />
-              - 개인정보 수집·이용 동의는 필수이며, 거부할 경우 입주예정자협의회 업무 사항 등에 대한 안내 및 통지가 누락될 수 있으며 이에 대한 불이익은 본인에게 있습니다.
+              - 개인정보 수집·이용 동의는 필수이며, 
+              거부할 경우 입주예정자협의회 업무 사항 등에 대한 안내 및 통지가 누락될 수 있으며 이에 대한 불이익은 본인에게 귀속됩니다.
             </div>
 
             <div class="consent-checks">
               <label class="checkbox-row">
                 <input type="checkbox" id="consent-privacy" />
-                <span>「개인정보 보호법」제22조에 따라 상기 개인정보 수집·활용에 대하여 동의합니다.</span>
+                <span>「개인정보 보호법」제22조에 따라 상기 개인정보 수집·이용에 대하여 동의합니다.</span>
               </label>
 
               <label class="checkbox-row">
@@ -541,37 +567,26 @@
           <div class="submit-area">
             <p>아래 버튼을 눌러 위임장을 제출해 주세요.</p>
             <button type="submit" class="btn-submit">위임장 제출</button>
-            <div id="form-error" class="error-message" style="display:none;"></div>
+            <div id="form-error" class="error-message"></div>
+
+            <div class="download-area">
+              전자적 제출이 어려운 경우 서면 위임장을 다운받을 수 있는 링크를 추가하고 싶어.
+              <br>
+              <a class="download-link" href="delegation.pdf" target="_blank" rel="noopener">서면 위임장 다운로드</a>
+            </div>
           </div>
 
         </form>
       </main>
     </div>
   </div>
-  <script>
-  (function () {
-    const form = document.getElementById("delegation-form");
-  
-    form.addEventListener("submit", function (e) {
-  
-      /*  여기서 제목을 동적으로 만든다 */
-      const name = document.querySelector('input[name="full_name"]').value;
-      const dong = document.querySelector('input[name="dong"]').value;
-      const ho   = document.querySelector('input[name="ho"]').value;
-  
-      document.getElementById("email-subject").value =
-        `힐스테이트 메디알레 전자 위임장 제출 - ${name} (${dong}동 ${ho}호)`;
-  
-      /* 기존 서명/동의 체크 로직 그대로 유지 */
-    });
-  })();
-  </script>
 
-  <!-- 서명 스크립트 -->
   <script>
     (function () {
+      const form = document.getElementById("delegation-form");
       const canvas = document.getElementById("signature-canvas");
       const ctx = canvas.getContext("2d");
+
       let isDrawing = false;
       let lastX = 0;
       let lastY = 0;
@@ -579,8 +594,10 @@
 
       function resizeCanvas() {
         const rect = canvas.getBoundingClientRect();
-        canvas.width = rect.width;
-        canvas.height = 220;
+        const ratio = window.devicePixelRatio || 1;
+        canvas.width = Math.floor(rect.width * ratio);
+        canvas.height = Math.floor(220 * ratio);
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
       }
 
       resizeCanvas();
@@ -598,67 +615,107 @@
         ctx.strokeStyle = "#000";
         ctx.lineWidth = 2;
         ctx.lineCap = "round";
-
+        ctx.lineJoin = "round";
         ctx.beginPath();
         ctx.moveTo(lastX, lastY);
         ctx.lineTo(x, y);
         ctx.stroke();
-
         lastX = x;
         lastY = y;
       }
 
-      canvas.addEventListener("mousedown", e => {
+      function getPos(e) {
         const r = canvas.getBoundingClientRect();
-        startDrawing(e.clientX - r.left, e.clientY - r.top);
-      });
-      canvas.addEventListener("mousemove", e => {
-        const r = canvas.getBoundingClientRect();
-        drawLine(e.clientX - r.left, e.clientY - r.top);
-      });
-      canvas.addEventListener("mouseup", () => isDrawing = false);
-      canvas.addEventListener("mouseleave", () => isDrawing = false);
+        return { x: e.clientX - r.left, y: e.clientY - r.top };
+      }
 
-      canvas.addEventListener("touchstart", e => {
+      canvas.addEventListener("mousedown", (e) => {
+        const p = getPos(e);
+        startDrawing(p.x, p.y);
+      });
+      canvas.addEventListener("mousemove", (e) => {
+        const p = getPos(e);
+        drawLine(p.x, p.y);
+      });
+      canvas.addEventListener("mouseup", () => (isDrawing = false));
+      canvas.addEventListener("mouseleave", () => (isDrawing = false));
+
+      canvas.addEventListener("touchstart", (e) => {
         e.preventDefault();
         const t = e.touches[0];
         const r = canvas.getBoundingClientRect();
         startDrawing(t.clientX - r.left, t.clientY - r.top);
-      });
-      canvas.addEventListener("touchmove", e => {
+      }, { passive: false });
+
+      canvas.addEventListener("touchmove", (e) => {
         e.preventDefault();
         const t = e.touches[0];
         const r = canvas.getBoundingClientRect();
         drawLine(t.clientX - r.left, t.clientY - r.top);
-      });
-      canvas.addEventListener("touchend", e => {
+      }, { passive: false });
+
+      canvas.addEventListener("touchend", (e) => {
         e.preventDefault();
         isDrawing = false;
-      });
+      }, { passive: false });
 
       document.getElementById("clear-signature").addEventListener("click", () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         hasSignature = false;
       });
 
-      document.getElementById("delegation-form").addEventListener("submit", function (e) {
+      function exportSignatureCompressed() {
+        const maxW = 800; // 너무 큰 base64 방지
+        const ratio = canvas.width / canvas.height;
+        const outW = Math.min(canvas.width, maxW);
+        const outH = Math.floor(outW / ratio);
+
+        const out = document.createElement("canvas");
+        out.width = outW;
+        out.height = outH;
+
+        const octx = out.getContext("2d");
+        octx.fillStyle = "#ffffff";
+        octx.fillRect(0, 0, outW, outH);
+        octx.drawImage(canvas, 0, 0, outW, outH);
+
+        return out.toDataURL("image/jpeg", 0.8);
+      }
+
+      form.addEventListener("submit", function (e) {
+        const formError = document.getElementById("form-error");
+        const signatureError = document.getElementById("signature-error");
+        formError.style.display = "none";
+        signatureError.style.display = "none";
+        formError.textContent = "";
+
+        // 1) 제목 동적 세팅
+        const name = document.querySelector('input[name="full_name"]').value || "";
+        const dong = document.querySelector('input[name="dong"]').value || "";
+        const ho   = document.querySelector('input[name="ho"]').value || "";
+        document.getElementById("email-subject").value =
+          `힐스테이트 메디알레 전자 위임장 제출 - ${name} (${dong}동 ${ho}호)`;
+
+        // 2) 동의 체크
         if (!document.getElementById("consent-privacy").checked ||
             !document.getElementById("consent-delegation").checked) {
           e.preventDefault();
-          alert("모든 동의사항에 체크해 주세요.");
+          formError.textContent = "모든 동의사항에 체크해 주세요.";
+          formError.style.display = "block";
           return;
         }
 
+        // 3) 서명 체크
         if (!hasSignature) {
           e.preventDefault();
-          document.getElementById("signature-error").style.display = "block";
+          signatureError.style.display = "block";
           return;
         }
 
-        document.getElementById("signature-image").value = canvas.toDataURL("image/png");
+        // 4) 서명 이미지 세팅(압축)
+        document.getElementById("signature-image").value = exportSignatureCompressed();
       });
     })();
   </script>
-
 </body>
 </html>
