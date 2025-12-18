@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7f1820"></stop>
+      <stop offset="100%" stop-color="#b4353d"></stop>
+    </linearGradient>
+  </defs>
+
+  <!-- 둥근 사각형 -->
+  <rect x="5" y="5" width="90" height="90" rx="18" ry="18" fill="url(#bg)"></rect>
+
+  <!-- H 텍스트 -->
+  <text x="50" y="62" text-anchor="middle" font-size="52" font-weight="700" fill="#ffffff" font-family="Noto Sans KR, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    H
+  </text>
+</svg>
